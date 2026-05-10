@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Hamza Labz | Website Design Projects</title>
+    
+    <style>
+        :root {
+            --primary-accent: #8A2BE2;
+            --secondary-accent: #a855f7;
+            --bg-dark: #0A0A0A;
+            --bg-light: #1A1A1A;
+            --text-color: #FFFFFF;
+            --text-muted: #CCCCCC;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- GLOW UP EFFECT START --- */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
+        /* --- GLOW UP EFFECT END --- */
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover { color: var(--text-color); }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-accent);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        
+        .nav-link.active::after { width: 100%; left: 0; }
+        .nav-link:hover::after { width: 100%; left: 0; }
+        
+        .btn {
+            border: 2px solid white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-accent);
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="sticky top-0 z-50 bg-bg-dark bg-opacity-95 backdrop-blur-sm shadow-xl border-b border-gray-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white tracking-widest">
+                Hamza<span class="text-primary-accent">Labz</span>
+            </a>
+
+            <div class="flex space-x-6 sm:space-x-10 items-center">
+                <a href="index.html#portfolio" class="nav-link text-white font-bold">← Back to Portfolio</a>
+                <a href="Web design.html" class="nav-link active">Website Design</a>
+                <a href="Graphic design.html" class="nav-link">Graphic Design</a>
+                <a href="Logo design.html" class="nav-link">Logo Design</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="bg-bg-dark py-16 px-4 md:px-8 lg:px-12 text-center border-b border-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
+                    High-Performance <span class="text-primary-accent">Website Design</span>
+                </h1>
+                <p class="text-xl text-gray-400">
+                    Showcasing speed, responsiveness, and clean code.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-20 px-4 md:px-8 lg:px-12 bg-[#121212]">
+            <div class="max-w-7xl mx-auto">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <div class="project-card bg-gray-800 rounded-xl overflow-hidden flex flex-col h-full group">
+                        <img src="images/standard 1.png" alt="Custom Blog" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary-accent transition-colors">Standard Web Design</h3>
+                            <p class="text-primary-accent mb-4 text-sm font-semibold uppercase tracking-wider">Static / Blog / Portfolio</p>
+                            <p class="text-gray-400 text-sm">A custom-built, lightweight WordPress theme designed for content marketing. Achieved 95+ scores on Google Lighthouse.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card bg-gray-800 rounded-xl overflow-hidden flex flex-col h-full group">
+                        <img src="images/Best-E-Commerce-Services-Solutions.png" alt="E-commerce" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary-accent transition-colors">E-Commerce Solution</h3>
+                            <p class="text-primary-accent mb-4 text-sm font-semibold uppercase tracking-wider">WordPress / E-commerce</p>
+                            <p class="text-gray-400 text-sm">A fast, scalable e-commerce solution featuring bespoke product display logic and payment gateway integration.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card bg-gray-800 rounded-xl overflow-hidden flex flex-col h-full group">
+                        <img src="images/dynamic-designing.webp" alt="Custom Design" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary-accent transition-colors">Custom Website Design</h3>
+                            <p class="text-primary-accent mb-4 text-sm font-semibold uppercase tracking-wider">Booking / Travel / School</p>
+                            <p class="text-gray-400 text-sm">Development of high-conversion, fully responsive custom web designs focused on clean styling and user experience.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-16">
+                    <a href="index.html#contact" class="btn">
+                        Contact Us For Your Project <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-bg-dark border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+        &copy; 2025 HamzaLabz. All rights reserved.
+    </footer>
+
+</body>
+</html>
