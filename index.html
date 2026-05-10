@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Hamza Labz | Portfolio</title>
+    
+    <style>
+        /*
+         * NEW REDESIGN COLOR PALETTE & VARIABLES
+         */
+        :root {
+            --primary-accent: #8A2BE2; /* Electric Purple */
+            --secondary-accent: #a855f7; /* For softer shadows/gradients */
+            --bg-dark: #0A0A0A; /* Deep Dark Background */
+            --bg-light: #1A1A1A; /* Card/Section Background */
+            --text-color: #FFFFFF;
+            --text-muted: #CCCCCC;
+        }
+
+        /*
+         * START: COMBINED CSS STYLES 
+         */
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%; /* 1rem = 10px */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-dark); /* Applied new deep dark color */
+            color: var(--text-color);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 10rem;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 4.5rem;
+            margin-bottom: 5rem;
+            font-weight: 700;
+        }
+
+        span {
+            color: var(--primary-accent);
+        }
+
+        /* Header & Navigation (Added Glass effect) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background-color: rgba(10, 10, 10, 0.95); /* Use new dark color */
+            backdrop-filter: blur(10px); /* Glass effect */
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1); /* Lighter border */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .header-logo {
+            height: 4rem;
+            width: 4rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-accent);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+            transition: 0.3s ease;
+        }
+        
+        .logo-text {
+            font-size: 3rem;
+            color: var(--primary-accent);
+            font-weight: 800;
+            transition: 0.5s ease;
+        }
+
+        .logo-container:hover .logo-text {
+            transform: scale(1.03);
+            text-shadow: 0 0 10px var(--secondary-accent);
+        }
+        .logo-container:hover .header-logo {
+            box-shadow: 0 0 20px var(--primary-accent);
+        }
+
+        nav a {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            position: relative;
+        }
+        
+        /* Underline effect for navigation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary-accent);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-accent);
+        }
+        
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Toggle (Hamburger/Close Icon) */
+        #menu-icon {
+            font-size: 3rem;
+            color: var(--primary-accent); 
+            cursor: pointer;
+            display: none;
+            padding: 0.5rem; 
+            border-radius: 0.5rem;
+            transition: 0.3s ease;
+            z-index: 101; 
+        }
+
+        /* Responsive Adjustments for Header */
+        @media(max-width:995px) {
+            header {
+                padding: 2rem 5%; 
+            }
+            
+            #menu-icon {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                display: flex; 
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 100%;
+                max-width: 300px;
+                background-color: var(--bg-light);
+                border-left: 3px solid var(--primary-accent);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+            }
+
+            nav.active {
+                transform: translateX(0);
+            }
+            
+            nav a:first-child { 
+                margin-top: 10rem; 
+            }
+
+            nav a {
+                margin: 2rem 0;
+                padding: 1.5rem;
+                font-size: 2.2rem;
+                width: 80%;
+                text-align: center;
+            }
+
+            nav a:hover::after,
+            nav a.active::after {
+                width: 80%;
+                left: 10%;
+            }
+        }
+        
+        @media(max-width:600px) {
+            header {
+                padding: 1.5rem 4%;
+            }
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            .header-logo {
+                height: 3.5rem; 
+                width: 3.5rem;
+            }
+            section {
+                padding: 8rem 5% 8rem; /* Adjusted section padding for small screens */
+            }
+        }
+        
+        /* Home Section Styles */
+        .home {
+            padding-top: 15rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: calc(100vh - 80px);
+        }
+
+        .home-content {
+            max-width: 800px;
+        }
+
+        .home .home-content h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .home-content h3 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .home-content p {
+            font-size: 1.8rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-muted);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4.8rem; /* Slightly larger icons */
+            height: 4.8rem;
+            background-color: var(--bg-light); /* Darker background for contrast */
+            border: 0.2rem solid var(--primary-accent);
+            font-size: 2.2rem;
+            border-radius: 50%;
+            margin: 3rem 1.5rem 3rem 0;
+            transition: 0.4s ease;
+            color: var(--primary-accent);
+            box-shadow: 0 0 5px rgba(138, 43, 226, 0.5); /* Subtle initial shadow */
+        }
+
+        .social-icons a:hover {
+            color: var(--bg-dark); /* Dark text on hover */
+            transform: scale(1.1) translateY(-3px);
+            background-color: var(--primary-accent);
+            box-shadow: 0 0 35px var(--primary-accent); /* Stronger glow on hover */
+        }
+
+        /* Hire Me Button (Redesigned) */
+        .btn {
+            display: inline-block;
+            padding: 1.4rem 3.5rem; /* Larger padding */
+            background-color: var(--primary-accent);
+            color: var(--bg-dark);
+            border-radius: 5rem; /* More rounded pill shape */
+            font-size: 1.8rem;
+            letter-spacing: 0.1rem;
+            font-weight: 600;
+            border: 2px solid var(--primary-accent);
+            transition: 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); /* Stronger initial glow */
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: var(--secondary-accent);
+            box-shadow: 0 0 45px var(--primary-accent); /* Intense glow on hover */
+        }
+
+        /* Typing Text Animation */
+        .typing-text {
+            font-size: 3.4rem;
+            font-weight: 600;
+            min-height: 40px; /* Prevent layout shift */
+        }
+
+        .typing-text span {
+            position: relative;
+            color: var(--primary-accent);
+        }
+
+        .typing-text span::after {
+            content: "";
+            background-color: var(--bg-dark); /* Use the new deep dark background color */
+            position: absolute;
+            width: 8px;
+            height: 100%;
+            border-left: 3px solid var(--bg-dark);
+            right: -8px;
+            animation: cursor 0.6s infinite;
+        }
+
+        @keyframes cursor {
+            to {
+                border-left: 3px solid var(--primary-accent);
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .home {
+                padding-top: 10rem;
+            }
+        }
+
+        @media(max-width:600px) {
+            .home .home-content h3 {
+                font-size: 3rem;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+            .typing-text {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Services Section Styles (Card Redesign) */
+        .services {
+            padding-top: 10rem;
+        }
+        
+        .services-intro {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .services-intro p {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+        }
+
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3.5rem; /* Increased gap for breathing room */
+            padding: 0 5%;
+        }
+
+        .service-card {
+            background-color: var(--bg-light); 
+            width: 350px;
+            text-align: center;
+            padding: 4rem 3rem; 
+            border-radius: 1.5rem; 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); 
+            border: none; 
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            color: var(--text-color);
+            /* ALIGNMENT FIX: Flex container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3); 
+        }
+        
+        .service-card a {
+            color: var(--primary-accent);
+            font-size: 1.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: auto; /* ALIGNMENT FIX: Push to bottom */
+            padding-top: 2rem;
+            transition: 0.3s ease;
+        }
+
+        .service-card a:hover {
+            color: var(--secondary-accent);
+            text-decoration: underline;
+        }
+
+        .service-icon {
+            font-size: 5rem; 
+            margin-bottom: 2rem;
+            color: var(--primary-accent);
+        }
+
+        .service-card h2 {
+            font-size: 2.4rem; 
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex-grow: 1; /* ALIGNMENT FIX: Grow to fill space */
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+
+        /* Skills Section Styles (Card Redesign) */
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3.5rem; /* Increased gap */
+        }
+
+        .skill-box {
+            background: var(--bg-light);
+            padding: 4rem 3rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            border: none; /* Removed heavy border */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Subtle dark shadow */
+            transition: 0.4s ease;
+            max-width: 350px;
+        }
+
+        .skill-box:hover {
+            border-color: var(--primary-accent);
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3); /* Purple glow on hover */
+        }
+
+        .skill-box i {
+            font-size: 6rem; /* Larger icon */
+            color: var(--primary-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-box h3 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-box p {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        /* Experience Section (Timeline Style Refinement) */
+        .experience {
+            min-height: 80vh; 
+        }
+
+        .timeline-items {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-top: 5rem; 
+        }
+
+        .timeline-items::before {
+            content: '';
+            position: absolute;
+            width: 3px; /* Slightly thicker line */
+            height: 100%;
+            background-color: rgba(138, 43, 226, 0.5); /* Softer line color */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem; /* Increased margin for separation */
+            position: relative;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+        }
+
+        .timeline-dot {
+            height: 25px; /* Larger dot */
+            width: 25px;
+            background-color: var(--primary-accent);
+            box-shadow: 0 0 15px var(--primary-accent);
+            border: 3px solid var(--bg-dark); /* Contrast border */
+            border-radius: 50%;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            transition: transform 0.3s;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            transform: translateX(-50%) scale(1.15);
+            box-shadow: 0 0 30px var(--primary-accent);
+        }
+
+
+        .timeline-date {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--secondary-accent); /* Use softer accent for date */
+            /* UPDATED: Added margin-bottom for better separation from content */
+            margin: 10px 20px 15px 20px; 
+        }
+
+        .timeline-content {
+            background: var(--bg-light);
+            margin: 10px;
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 1rem;
+            border: 1px solid rgba(138, 43, 226, 0.2); /* Lighter border */
+            transition: 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.3); /* Subtle glow on hover */
+        }
+
+        .timeline-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .timeline-content p {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- RESPONSIVENESS FOR EXPERIENCE SECTION --- */
+        @media (max-width: 768px) {
+            /* Mobile View: Single column, left-aligned */
+            .timeline-items::before {
+                left: 20px; 
+                transform: translateX(0);
+            }
+
+            .timeline-item {
+                padding-left: 60px; 
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 20px; 
+                transform: translateX(-50%);
+            }
+            
+            /* Date adjustment for left alignment on mobile */
+            .timeline-date {
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 15px; /* Retain the margin-bottom from the update */
+            }
+        }
+        /* --- END RESPONSIVENESS FOR EXPERIENCE SECTION --- */
+
+        /* Contact Section Styles (Input Redesign) */
+        .contact form {
+            max-width: 70rem;
+            margin: 1rem auto;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact form .input-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .contact form .input-box input,
+        .contact form textarea {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.7rem;
+            color: var(--text-color);
+            background: var(--bg-light);
+            border-radius: 0.8rem;
+            margin: 0.7rem 0;
+            border: 1px solid rgba(138, 43, 226, 0.4); /* Softer input border */
+            transition: 0.3s ease;
+            resize: none;
+        }
+        
+        .contact form .input-box input::placeholder,
+        .contact form textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .contact form .input-box input:focus,
+        .contact form textarea:focus {
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+        }
+
+        .contact form .input-box input {
+            width: 49%;
+        }
+
+        @media (max-width: 600px) {
+            .contact form .input-box input {
+                width: 100%;
+                margin: 0.7rem 0;
+            }
+        }
+
+        .contact form textarea {
+            width: 100%;
+        }
+
+        .contact form .btn {
+            margin-top: 2rem;
+            /* WhatsApp Button Style */
+            background-color: #25D366; 
+            color: white;
+            border-color: #25D366;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.6); 
+        }
+        
+        .contact form .btn:hover {
+            background-color: #128C7E;
+            border-color: #128C7E;
+            box-shadow: 0 0 30px #25D366;
+        }
+
+        /* Footer Styles */
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem 9%;
+            background: var(--bg-light);
+            color: var(--text-muted);
+            font-size: 1.6rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.1);
+        }
+
+        .footer p {
+            font-size: 1.6rem;
+        }
+
+        /*
+         * END: COMBINED CSS STYLES
+         */
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <a href="#home" class="logo-container">
+            <img src="Hamza Labz Logo.png" alt="Hamza Labz Logo" class="header-logo" onerror="this.onerror=null; this.src='https://placehold.co/40x40/8A2BE2/ffffff?text=HL';">
+            <span class="logo-text">Hamza Labz</span>
+        </a>
+        
+        <div id="menu-icon"><i class="fas fa-bars"></i></div>
+
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- 1. Home Section -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi, It's <span>Hamza Labz</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>Welcome to Hamza Labz – where creativity meets expertise. Explore my projects, designs, and innovations that reflect passion, skill, and dedication. From web and graphic design to digital solutions, discover how I turn ideas into impactful experiences.</p>
+            <div class="social-icons">
+                <a href="https://facebook.com/hamzalabzz" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/hamzalabz/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <a href="#contact" class="btn">Hire me</a>
+        </div>
+    </section>
+
+    <!-- 2. Services Section -->
+    <section class="services" id="services">
+        <h2 class="heading">My <span>Services</span></h2>
+        
+        <div class="services-intro">
+            <p>Turning creative visions into technical realities. I offer comprehensive solutions across design, development, and digital marketing.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card">
+                <i class="service-icon fa-solid fa-palette"></i>
+                <h2>Branding & Graphic Design</h2>
+                <p>Developing compelling brand identities, logos, and visual materials that communicate your message clearly and professionally across all platforms.</p>
+                <a href="Graphic design.html">View More</a>
+            </div>
+            <!-- Card 2 -->
+            <div class="service-card">
+                <i class="service-icon fa-brands fa-wordpress"></i>
+                <h2>WordPress Development</h2>
+                <p>Custom theme development, plugin integration, and site optimization for robust, easy-to-manage, and professional WordPress websites.</p>
+                <a href="Web design.html">View More</a>
+            </div>
+            <!-- Card 3 -->
+            <div class="service-card">
+                <i class="service-icon fa-solid fa-magnifying-glass-chart"></i>
+                <h2>SEO Optimization</h2>
+                <p>Implementing effective search engine optimization strategies to improve your visibility, drive organic traffic, and increase engagement.</p>
+                <!-- <a href="#">View More</a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="heading">My <span>Skills</span></h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <i class="fa-brands fa-html5"></i>
+                <h3>Web Development</h3>
+                <p>Expertise in HTML5, CSS3, JavaScript, and modern frameworks like React and Vue for building dynamic and responsive web applications.</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-paintbrush"></i>
+                <h3>Graphic Design</h3>
+                <p>Proficient in Adobe Suite (Photoshop, Illustrator) for creating stunning visual content, branding, and user interface designs.</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-code"></i>
+                <h3>Backend & Database</h3>
+                <p>Experience with Node.js, Python, and SQL/NoSQL databases (like Firebase/Firestore) for robust and scalable backend solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Experience Section -->
+    <section class="experience" id="experience">
+        <h2 class="heading">My <span>Experience</span></h2>
+        <div class="timeline-items">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024 - Present</div>
+                <div class="timeline-content">
+                    <h3>Senior Web Developer | Tech Solutions Inc.</h3>
+                    <p>Led a team of 4 developers on the redesign of the company's main e-commerce platform, resulting in a 20% increase in conversion rate.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2022 - 2024</div>
+                <div class="timeline-content">
+                    <h3>Junior Graphic Designer | Creative Hub</h3>
+                    <p>Developed branding packages and marketing materials for over 30 clients, enhancing their digital presence and market visibility.</p>
+                </div>
+            </div>
+             <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2020 - 2022</div>
+                <div class="timeline-content">
+                    <h3>Freelance Designer | Remote</h3>
+                    <p>Managed diverse international client projects focusing on responsive website mockups and social media campaign design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+        <form id="whatsappForm">
+            <div class="input-box">
+                <input type="text" name="fullName" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-box">
+                <input type="number" name="mobile" placeholder="Mobile Number"> 
+                <input type="text" name="subject" placeholder="Inquiry Subject" required>
+            </div>
+            <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message via WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 by Hamza Labz | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.querySelector('nav');
+        const menuIcon = document.getElementById('menu-icon');
+        const iconElement = menuIcon ? menuIcon.querySelector('i') : null;
+
+        function toggleMenu() {
+            if (!iconElement) return;
+            nav.classList.toggle('active');
+            if (nav.classList.contains('active')) {
+                iconElement.classList.remove('fa-bars');
+                iconElement.classList.add('fa-xmark');
+            } else {
+                iconElement.classList.remove('fa-xmark');
+                iconElement.classList.add('fa-bars');
+            }
+        }
+        
+        if (menuIcon) {
+            menuIcon.addEventListener('click', toggleMenu);
+        }
+
+        const typingTextElement = document.querySelector('.typing-text span');
+        const words = ["Digital creator", "Web Developer", "Web Designer", "Graphics Designer", "Wordpress Developer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            const display = isDeleting
+                ? currentWord.substring(0, charIndex)
+                : currentWord.substring(0, charIndex + 1);
+
+            typingTextElement.textContent = display;
+
+            if (!isDeleting && charIndex < currentWord.length) {
+                charIndex++;
+                setTimeout(type, 100);
+            } else if (isDeleting && charIndex > 0) {
+                charIndex--;
+                setTimeout(type, 50);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                setTimeout(type, isDeleting ? 1000 : 200);
+            }
+        }
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('header nav a');
+
+        function updateActiveLink() {
+            sections.forEach(sec => {
+                const top = window.scrollY;
+                const offset = sec.offsetTop - 150; 
+                const height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+                
+                if (!id) return; 
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const targetLink = document.querySelector('header nav a[href*=' + id + ']');
+                    if (targetLink) {
+                        targetLink.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 995 && nav.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        window.onload = () => {
+            type();
+            updateActiveLink();
+        };
+
+        window.onscroll = updateActiveLink;
+        
+        const whatsappForm = document.getElementById('whatsappForm');
+        const WHATSAPP_LINK = 'http://tiny.cc/hamzalabzadm'; 
+
+        if (whatsappForm) {
+            whatsappForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                const fullName = this.querySelector('[name="fullName"]').value;
+                const email = this.querySelector('[name="email"]').value;
+                const mobile = this.querySelector('[name="mobile"]').value;
+                const subject = this.querySelector('[name="subject"]').value;
+                const message = this.querySelector('[name="message"]').value;
+
+                const whatsappMessage = `*New Contact Form Submission from "Hamza Labz Portfolio"*\n\n*Name:* ${fullName}\n*Email:* ${email}\n*Mobile:* ${mobile || 'N/A'}\n*Subject:* ${subject}\n\n*Message:*\n${message}`;
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const separator = WHATSAPP_LINK.includes('?') ? '&' : '?';
+                const whatsappUrl = `${WHATSAPP_LINK}${separator}text=${encodedMessage}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
